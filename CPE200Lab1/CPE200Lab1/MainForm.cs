@@ -38,7 +38,7 @@ namespace CPE200Lab1
         public MainForm()
         {
             InitializeComponent();
-            memory = 0;
+            memmorie = 0;
             engine = new CalculatorEngine();
             resetAll();
         }
@@ -83,7 +83,8 @@ namespace CPE200Lab1
             }
             operate = ((Button)sender).Text;
             firstOperand = lblDisplay.Text;
-            string result = engine.unaryCalculate(operate, firstOperand);
+            string result = engine.calculate(operate, firstOperand);
+
             if (result is "E" || result.Length > 8)
             {
                 lblDisplay.Text = "Error";
@@ -267,13 +268,13 @@ namespace CPE200Lab1
             {
                 return;
             }
-            memory += Convert.ToDouble(lblDisplay.Text);
+            memmorie += Convert.ToDouble(lblDisplay.Text);
             isAfterOperater = true;
         }
 
         private void btnMC_Click(object sender, EventArgs e)
         {
-            memory = 0;
+            memmorie = 0;
         }
 
         private void btnMM_Click(object sender, EventArgs e)
@@ -282,7 +283,7 @@ namespace CPE200Lab1
             {
                 return;
             }
-            memory -= Convert.ToDouble(lblDisplay.Text);
+            memmorie -= Convert.ToDouble(lblDisplay.Text);
             isAfterOperater = true;
         }
 
@@ -292,7 +293,7 @@ namespace CPE200Lab1
             {
                 return;
             }
-            lblDisplay.Text = memory.ToString();
+            lblDisplay.Text = memmorie.ToString();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
