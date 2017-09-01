@@ -21,7 +21,7 @@ namespace CPE200Lab1
         private string operate;
         private CalculatorEngine engine;
         private double memmorie;
-           
+        double percentint;
         private void resetAll()
         {
             lblDisplay.Text = "0";
@@ -73,6 +73,8 @@ namespace CPE200Lab1
 
         private void btnOperator_Click(object sender, EventArgs e)
         {
+            
+            
             if (lblDisplay.Text is "Error")
             {
                 return;
@@ -81,15 +83,16 @@ namespace CPE200Lab1
             {
                 return;
             }
+           
             operate = ((Button)sender).Text;
             if (!isFirstOperater)
             {
-
                 if (lblDisplay.Text is "Error")
                 {
                     return;
                 }
                 string secondOperand = lblDisplay.Text;
+                
                 string result = engine.calculate(operate, firstOperand, secondOperand);
                 if (result is "E" || result.Length > 8)
                 {
@@ -100,6 +103,7 @@ namespace CPE200Lab1
                     lblDisplay.Text = result;
                 }
             }
+
             switch (operate)
             {
                 case "+":
@@ -109,11 +113,7 @@ namespace CPE200Lab1
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
                     break;
-                case "%":
-                    // your code here
-                    firstOperand = lblDisplay.Text;
-                    isAfterOperater = true;
-                    break;
+                
                 case "Square root":
                     //new code
                     firstOperand = lblDisplay.Text;
@@ -122,6 +122,7 @@ namespace CPE200Lab1
             }
             isAllowBack = false;
             isFirstOperater = false;
+            hasDot = false;
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -163,6 +164,7 @@ namespace CPE200Lab1
                 lblDisplay.Text += ".";
                 hasDot = true;
             }
+
         }
 
         private void btnSign_Click(object sender, EventArgs e)
@@ -280,6 +282,10 @@ namespace CPE200Lab1
 
         private void button7_Click(object sender, EventArgs e)
         {
+            if (lblDisplay.Text == "0")
+            {
+                lblDisplay.Text = "Error";
+            }
             double result;
             string[] parts;
             int remainLength;
@@ -294,6 +300,12 @@ namespace CPE200Lab1
             
 
             
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            double num = Convert.ToDouble(firstOperand) * (Convert.ToDouble(lblDisplay.Text)/100);
+            lblDisplay.Text = Convert.ToString(num);
         }
     }
 }
