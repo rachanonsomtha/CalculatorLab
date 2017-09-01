@@ -9,7 +9,9 @@ namespace CPE200Lab1
     class CalculatorEngine
     {
         public string calculate(string operate, string firstOperand, string secondOperand, int maxOutputSize = 8)
-        {
+        {               double result;
+                        string[] parts;
+                        int remainLength;
             switch (operate)
             {
                 case "+":
@@ -19,13 +21,10 @@ namespace CPE200Lab1
                 case "X":
                     return (Convert.ToDouble(firstOperand) * Convert.ToDouble(secondOperand)).ToString();
                 case "÷":
-                    // Not allow devide be zero
+                    // Not allow devide be zero 
+                        
                     if (secondOperand != "0")
-                    {
-                        double result;
-                        string[] parts;
-                        int remainLength;
-
+                    {                     
                         result = (Convert.ToDouble(firstOperand) / Convert.ToDouble(secondOperand));
                         // split between integer part and fractional part
                         parts = result.ToString().Split('.');
@@ -44,8 +43,20 @@ namespace CPE200Lab1
                     return (Convert.ToDouble(firstOperand) * ((Convert.ToDouble(secondOperand) / 100))).ToString();
 
                 case "Square root":
-                    double summi = Math.Sqrt(Convert.ToDouble(firstOperand));
-                    return Convert.ToString(summi);
+                    
+
+                    result = Math.Sqrt(Convert.ToDouble(firstOperand));
+                   
+                    parts = result.ToString().Split('.');
+                    
+                    if (parts[0].Length > maxOutputSize)
+                    {
+                        return "E";
+                    }
+                    
+                    remainLength = maxOutputSize - parts[0].Length - 1;
+                   
+                    return result.ToString("N" + remainLength);
 
             }
             return "E";

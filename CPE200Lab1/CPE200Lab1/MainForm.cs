@@ -122,6 +122,7 @@ namespace CPE200Lab1
             }
             isAllowBack = false;
             isFirstOperater = false;
+            hasDot = false;
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -290,10 +291,10 @@ namespace CPE200Lab1
                              remainLength = 8 - parts[0].Length - 1;
          
             lblDisplay.Text=  result.ToString("N" + remainLength);
+            hasDot = false;
 
-            
 
-            
+
         }
     }
 }
