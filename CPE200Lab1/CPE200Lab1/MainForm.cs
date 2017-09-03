@@ -147,11 +147,6 @@ namespace CPE200Lab1
                     firstOperand = lblDisplay.Text;
                     isAfterOperater = true;
                     break;
-                case "%":
-                    // your code here               
-                    lblDisplay.Text =  Convert.ToString(Convert.ToDouble(firstOperand) * (Convert.ToDouble(lblDisplay.Text)/100));
-                    
-                    break;
                 case "Square root":
                     //new code
                     firstOperand = lblDisplay.Text;
@@ -366,6 +361,11 @@ namespace CPE200Lab1
             
 
             
+        }
+
+        private void btnPercent_Click(object sender, EventArgs e)
+        {
+              lblDisplay.Text = Convert.ToString(Convert.ToDouble(firstOperand) * (Convert.ToDouble(lblDisplay.Text) / 100));
         }
     }
 }
