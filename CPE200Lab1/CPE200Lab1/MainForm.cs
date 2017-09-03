@@ -148,9 +148,9 @@ namespace CPE200Lab1
                     isAfterOperater = true;
                     break;
                 case "%":
-                    // your code here
-                    firstOperand = lblDisplay.Text;
-                    isAfterOperater = true;
+                    // your code here               
+                    lblDisplay.Text =  Convert.ToString(Convert.ToDouble(firstOperand) * (Convert.ToDouble(lblDisplay.Text)/100));
+                    
                     break;
                 case "Square root":
                     //new code

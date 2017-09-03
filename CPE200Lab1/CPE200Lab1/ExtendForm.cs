@@ -132,5 +132,10 @@ namespace CPE200Lab1
                 lblDisplay.Text += ".";
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
