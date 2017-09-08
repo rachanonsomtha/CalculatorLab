@@ -14,10 +14,9 @@ namespace CPE200Lab1
             return Double.TryParse(str, out retNum);
         }
 
-        private bool IsOperator(string str)
+        private bool isOperator(string str)
         {
-            switch (str)
-            {
+            switch(str) {
                 case "+":
                 case "-":
                 case "X":
@@ -26,18 +25,30 @@ namespace CPE200Lab1
             }
             return false;
         }
+
         public string Process(string str)
         {
-            string[] parts = str.Split(' ');
-            if (!(isNumber(parts[0]) && IsOperator(parts[1]) && isNumber(parts[2])))
+            //Split input string to multiple parts by space
+            List<string> parts = str.Split(' ').ToList<string>();
+            string result;
+            //As long as we have more than one part
+            while(parts.Count > 1)
             {
-                return "E";
+                //Check if the first three is ready for calcuation
+                if(!(isNumber(parts[0]) && isOperator(parts[1]) && isNumber(parts[2])))
+                {
+                    return "E";
+                } else
+                {
+                    //Calculate the first three
+                    result = calculate(parts[1], parts[0], parts[2], 4);
+                    //Remove the first three
+                    parts.RemoveRange(0, 3);
+                    // Put back the result
+                    parts.Insert(0, result);
+                }
             }
-            else
-            {
-                return calculate(parts[1], parts[0], parts[2], 4);
-            }
-
+            return parts[0];
         }
         public string unaryCalculate(string operate, string operand, int maxOutputSize = 8)
         {
@@ -63,7 +74,7 @@ namespace CPE200Lab1
                         return result.ToString("N" + remainLength);
                     }
                 case "1/x":
-                    if (operand != "0")
+                    if(operand != "0")
                     {
                         double result;
                         string[] parts;
@@ -121,8 +132,7 @@ namespace CPE200Lab1
                     break;
                 case "%":
                     //your code here
-                    return (Convert.ToDouble(firstOperand) *( Convert.ToDouble(secondOperand) / 100)).ToString();
-                   
+                    break;
             }
             return "E";
         }
