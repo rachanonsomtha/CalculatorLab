@@ -16,7 +16,6 @@ namespace CPE200Lab1
         private bool isContainDot = false;
         private bool isSpaceAllowed = false;
         private RPNCalculatorEngine engine;
-        
 
         public ExtendForm()
         {
@@ -53,18 +52,22 @@ namespace CPE200Lab1
             }
             lblDisplay.Text += ((Button)sender).Text;
             isSpaceAllowed = true;
-            
         }
 
         private void btnBinaryOperator_Click(object sender, EventArgs e)
         {
-            
+            if (lblDisplay.Text is "Error")
+            {
+                return;
+            }
             isNumberPart = false;
             isContainDot = false;
             string current = lblDisplay.Text;
-            lblDisplay.Text += " " + ((Button)sender).Text + " ";
-            isSpaceAllowed = false;
-            
+            if (current[current.Length - 1] != ' ' || isOperator(current[current.Length - 2]))
+            {
+                lblDisplay.Text += " " + ((Button)sender).Text + " ";
+                isSpaceAllowed = false;
+            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -94,8 +97,6 @@ namespace CPE200Lab1
             isContainDot = false;
             isNumberPart = false;
             isSpaceAllowed = false;
-            
-            
         }
 
         private void btnEqual_Click(object sender, EventArgs e)
@@ -107,6 +108,9 @@ namespace CPE200Lab1
             } else
             {
                 lblDisplay.Text = result;
+                isSpaceAllowed = true;
+                isContainDot = false;
+                isNumberPart = true;
             }
         }
 
@@ -163,12 +167,6 @@ namespace CPE200Lab1
                 lblDisplay.Text += " ";
                 isSpaceAllowed = false;
             }
-            isContainDot = false;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
