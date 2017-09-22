@@ -19,7 +19,7 @@ namespace CPE200Lab1
         private bool isFirstOperater;
         private string firstOperand;
         private string operate;
-        private CalculatorEngine engine;
+        private SimpleCalculatorEngine engine;
         private double memmorie;
            
         private void resetAll()
@@ -39,7 +39,7 @@ namespace CPE200Lab1
         {
             InitializeComponent();
             memmorie = 0;
-            engine = new CalculatorEngine();
+            engine = new SimpleCalculatorEngine();
             resetAll();
         }
 
